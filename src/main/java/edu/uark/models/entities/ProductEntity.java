@@ -43,6 +43,17 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public int getCount() {
 		return this.count;
 	}
+	
+	private double price;
++	public double getPrice() {
++		return this.price;
++	}
++	
++	private String status;
++	public String getStatus() {
++		
++	}
+	
 	public ProductEntity setCount(int count) {
 		if (this.count != count) {
 			this.count = count;
