@@ -13,9 +13,12 @@ public class TransactionCreateCommand implements ResultCommandInterface<Transact
     @Override
     public Transaction execute() {
         //Validations
-        if(StringUtils.isBlank(this.apiTransaction.getTransactionType())) {
+
+        //maybe needed?
+        /*if(StringUtils.isBlank(this.apiTransaction.getTransactionType())) {
             throw new UnprocessableEntityException("transaction_type");
-        }
+        }*/
+
 
         if(StringUtils.isBlank(this.apiTransaction.getCashierId())) {
             throw new UnprocessableEntityException("cashier_id");

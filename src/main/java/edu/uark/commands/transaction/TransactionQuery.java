@@ -12,7 +12,7 @@ import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface;
 public class TransactionQuery implements ResultCommandInterface<Transaction> {
     @Override
     public Transaction execute() {
-        TransactionEntity transactionEntity = this.transactionRepository.get(this.reference_id);
+        TransactionEntity transactionEntity = this.transactionRepository.get(this.referenceid);
         if(transactionEntity != null) {
             return new Transaction(transactionEntity);
         }
@@ -22,12 +22,12 @@ public class TransactionQuery implements ResultCommandInterface<Transaction> {
     }
 
     //Properties
-    private UUID reference_id;
+    private UUID referenceid;
     public UUID getReferenceId() {
-        return this.reference_id;
+        return this.referenceid;
     }
-    public TransactionQuery setReferenceId(UUID reference_id) {
-        this.reference_id = reference_id;
+    public TransactionQuery setReferenceId(UUID referenceid) {
+        this.referenceid = referenceid;
         return this;
     }
 

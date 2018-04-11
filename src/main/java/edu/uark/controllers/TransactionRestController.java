@@ -21,9 +21,9 @@ public class TransactionRestController {
 
     //transaction exist check
     @RequestMapping(value = "/{reference_id}", method = RequestMethod.GET)
-    public Transaction getTransaction(@PathVariable UUID reference_id) {
+    public Transaction getTransaction(@PathVariable UUID referenceid) {
         return (new TransactionQuery()).
-                setReferenceId(reference_id).
+                setReferenceId(referenceid).
                 execute();
     }
 
