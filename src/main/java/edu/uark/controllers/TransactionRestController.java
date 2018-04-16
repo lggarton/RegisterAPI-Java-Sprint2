@@ -23,7 +23,7 @@ public class TransactionRestController {
     @RequestMapping(value = "/{reference_id}", method = RequestMethod.GET)
     public Transaction getTransaction(@PathVariable UUID referenceid) {
         return (new TransactionQuery()).
-                setReferenceId(referenceid).
+                setRecordId(referenceid).
                 execute();
     }
 
