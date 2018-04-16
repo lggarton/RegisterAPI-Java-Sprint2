@@ -15,13 +15,13 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	@Override
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.lookupCode = rs.getString(ProductFieldNames.LOOKUP_CODE);
-		this.count = rs.getInt(ProductFieldNames.COUNT);
+		this.quantity = rs.getInt(ProductFieldNames.QUANTITY);
 	}
 
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(ProductFieldNames.LOOKUP_CODE, this.lookupCode);
-		record.put(ProductFieldNames.COUNT, this.count);
+		record.put(ProductFieldNames.QUANTITY, this.quantity);
 		
 		return record;
 	}
@@ -82,7 +82,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	}
 	
 	public Product synchronize(Product apiProduct) {
-		this.setCount(apiProduct.getCount());
+		this.setQuantity(apiProduct.getQuantity());
 		this.setLookupCode(apiProduct.getLookupCode());
 		
 		apiProduct.setId(this.getId());
@@ -94,14 +94,14 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public ProductEntity() {
 		super(DatabaseTable.PRODUCT);
 		
-		this.count = -1;
+		this.quantity = -1;
 		this.lookupCode = StringUtils.EMPTY;
 	}
 	
 	public ProductEntity(Product apiProduct) {
 		super(DatabaseTable.PRODUCT);
 		
-		this.count = apiProduct.getCount();
+		this.quantity = apiProduct.getQuantity();
 		this.lookupCode = apiProduct.getLookupCode();
 	}
 }
