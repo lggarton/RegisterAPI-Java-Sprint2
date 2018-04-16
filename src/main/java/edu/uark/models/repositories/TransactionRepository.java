@@ -1,6 +1,7 @@
 package edu.uark.models.repositories;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 import edu.uark.dataaccess.repository.BaseRepository;
 import edu.uark.dataaccess.repository.DatabaseTable;
@@ -15,18 +16,17 @@ import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface;
 //placeholder for now; based on productRepository
 public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface {
 	@Override
-	public TransactionEntity byLookupCode(String lookupCode) {
+	public TransactionEntity byRecordId(UUID id) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
-					fieldName(TransactionFieldNames.LOOKUP_CODE).
+					fieldName(TransactionFieldNames.ID).
 					comparison(SQLComparisonType.EQUALS)
 			),
 			(ps) -> {
 				try {
-					ps.setObject(1, lookupCode.toLowerCase());
+					ps.setObject(1, id);
 				} catch (SQLException e) {}
 
 				return ps;

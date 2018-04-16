@@ -17,84 +17,76 @@ public class Transaction {
         return this;
     }
 
-    private String cashierid;
+    private String cashierId;
     public String getCashierId() {
-        return this.cashierid;
+        return this.cashierId;
     }
     public Transaction setCashierId(String cashier_id) {
-        this.cashierid = cashier_id;
+        this.cashierId = cashier_id;
         return this;
     }
 
-    private double totalamount;
+    private double totalAmount;
     public double getTotalAmount() {
-        return this.totalamount;
+        return this.totalAmount;
     }
     public Transaction setTotalAmount(double totalamount) {
-        this.totalamount = totalamount;
+        this.totalAmount = totalamount;
         return this;
     }
 
-    private boolean isrefund;
-    public boolean getIsRefund() {return this.isrefund; }
+    private boolean isRefund;
+    public boolean getIsRefund() {return this.isRefund; }
     public Transaction setIsRefund( boolean isrefund) {
-        this.isrefund = isrefund;
+        this.isRefund = isrefund;
         return this;
     }
 
-    /*----------------------------------------------------------------------------------------------------------------*/
-    /*A variable we planned for representing ("inStock||onBackorder||outOfStock") but is not in the SQL definition    */
-    /*----------------------------------------------------------------------------------------------------------------*/
-    /*
-
-    private String transactiontype;
-    public String getTransactionType() {
-        return this.transactiontype;
+    private int transactionType;
+    public int getTransactionType() {
+        return this.transactionType;
     }
-    public Transaction setTransactionType(String transactiontype) {
-        this.transactiontype = transactiontype;
+    public Transaction setTransactionType(int transactiontype) {
+        this.transactionType = transactiontype;
         return this;
     }
 
-    */
-
-
-    private UUID referenceid;
+    private UUID referenceId;
     public UUID getReferenceId() {
-        return this.referenceid;
+        return this.referenceId;
     }
     public Transaction setReferenceId(UUID referenceid) {
-        this.referenceid = referenceid;
+        this.referenceId = referenceid;
         return this;
     }
 
-    private LocalDateTime createdon;
+    private LocalDateTime createdOn;
     public LocalDateTime getCreatedOn() {
-        return this.createdon;
+        return this.createdOn;
     }
     public Transaction setCreatedOn(LocalDateTime createdon) {
-        this.createdon = createdon;
+        this.createdOn = createdon;
         return this;
     }
 
     public Transaction() {
         this.id = new UUID(0,0);
-        this.cashierid = StringUtils.EMPTY;
-        this.totalamount = 0;
-        this.isrefund = false;
-        //this.transactiontype = StringUtils.EMPTY;
-        this.referenceid = new UUID(0, 0);
-        this.createdon = LocalDateTime.now();
+        this.cashierId = StringUtils.EMPTY;
+        this.totalAmount = 0.00;
+        this.isRefund = false;
+        this.transactionType = 0;
+        this.referenceId = new UUID(0, 0);
+        this.createdOn = LocalDateTime.now();
     }
 
     public Transaction(TransactionEntity transactionEntity) {
-        this.id = transactionEntity.getRecordId();
-        this.cashierid = transactionEntity.getCashierId();
-        this.totalamount = transactionEntity.getTotalAmount();
-        this.isrefund = transactionEntity.getIsRefund();
-        //this.transactiontype = transactionEntity.getTransactionType();
-        this.referenceid = transactionEntity.getReferenceId();
-        this.createdon = transactionEntity.getCreatedOn();
+        this.id = transactionEntity.getId();
+        this.cashierId = transactionEntity.getCashierId();
+        this.totalAmount = transactionEntity.getTotalAmount();
+        this.isRefund = transactionEntity.getIsRefund();
+        this.transactionType = transactionEntity.getTransactionType();
+        this.referenceId = transactionEntity.getReferenceId();
+        this.createdOn = transactionEntity.getCreatedOn();
 
     }
 }

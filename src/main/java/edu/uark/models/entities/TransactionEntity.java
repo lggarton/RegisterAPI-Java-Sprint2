@@ -1,7 +1,5 @@
 package edu.uark.models.entities;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -17,85 +15,107 @@ import edu.uark.models.entities.fieldnames.TransactionFieldNames;
 public class TransactionEntity extends BaseEntity<TransactionEntity> {
 	@Override
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
-		this.active = rs.getBoolean(TransactionFieldNames.ACTIVE);
-		this.password = rs.getString(TransactionFieldNames.PASSWORD);
+		this.cashierId = rs.getString(TransactionFieldNames.CASHIER_ID);
+		this.totalAmount = (double) rs.getObject(TransactionFieldNames.TOTAL_AMOUNT);
+		this.isRefund = rs.getBoolean(TransactionFieldNames.IS_REFUND);
+		this.transactionType = rs.getInt(TransactionFieldNames.IS_REFUND);
+		this.referenceId = (UUID) rs.getObject(TransactionFieldNames.REFERENCE_ID);
 	}
 
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
-		record.put(TransactionFieldNames.ACTIVE, this.active);
-		record.put(TransactionFieldNames.PASSWORD, this.password);
+		record.put(TransactionFieldNames.CASHIER_ID, this.cashierId);
+		record.put(TransactionFieldNames.TOTAL_AMOUNT, this.totalAmount);
+		record.put(TransactionFieldNames.IS_REFUND, this.isRefund);
+		record.put(TransactionFieldNames.TRANSACTION_TYPE, this.transactionType);
+		record.put(TransactionFieldNames.REFERENCE_ID, this.referenceId);
 
 		return record;
 	}
 
-	private String password;
-	public String getPassword() {
-		return this.password;
+	private String cashierId;
+	public String getCashierId() {
+		return this.cashierId;
 	}
-	public EmployeeEntity setPassword(String password) {
-		if (!StringUtils.equals(this.password, password)) {
-			this.password = password;
-			this.propertyChanged(EmployeeFieldNames.PASSWORD);
+	public TransactionEntity setCashierId(String cashierId) {
+		if (!StringUtils.equals(this.cashierId, cashierId)) {
+			this.cashierId = cashierId;
+			this.propertyChanged(TransactionFieldNames.CASHIER_ID);
 		}
 		
 		return this;
 	}
 
-	private boolean active;
-	public boolean getActive() {
-		return this.active;
+	private double totalAmount;
+	public double getTotalAmount() {
+		return this.totalAmount;
 	}
-	public TransactionEntity setActive(boolean active) {
-		if (this.active != active) {
-			this.active = active;
-			this.propertyChanged(TransactionFieldNames.ACTIVE);
+	public TransactionEntity setTotalAmount(double totalAmount) {
+		if (this.totalAmount != totalAmount) {
+			this.totalAmount = totalAmount;
+			this.propertyChanged(TransactionFieldNames.TOTAL_AMOUNT);
 		}
 		
 		return this;
 	}
-	
-	public Transaction synchronize(Transaction apiTransaction) {
-		this.setActive(apiTransaction.getActive());
-		if (!StringUtils.isBlank(apiTransaction.getPassword())) {
-			this.setPassword(
-					TransactionEntity.hashPassword(
-					apiTransaction.getPassword()));
+
+	private boolean isRefund;
+	public boolean getIsRefund() { return this.isRefund; }
+	public TransactionEntity setIsRefund(boolean isRefund) {
+		if(this.isRefund != isRefund) {
+			this.isRefund = isRefund;
+			this.propertyChanged(TransactionFieldNames.IS_REFUND);
 		}
+		return this;
+	}
+
+	private int transactionType;
+	public int getTransactionType() { return this.transactionType; }
+	public TransactionEntity setTransactionType(int transactionType) {
+		if(this.transactionType != transactionType) {
+			this.transactionType = transactionType;
+			this.propertyChanged(TransactionFieldNames.TRANSACTION_TYPE);
+		}
+		return this;
+	}
+
+	private UUID referenceId;
+	public UUID getReferenceId() {return this.referenceId; }
+	public TransactionEntity setReferenceId(UUID referenceId) {
+		if(!this.referenceId.equals(referenceId)) {
+			this.referenceId = referenceId;
+			this.propertyChanged(TransactionFieldNames.REFERENCE_ID);
+		}
+		return this;
+	}
+
+	public Transaction synchronize(Transaction apiTransaction) {
+		this.setCashierId(apiTransaction.getCashierId());
+		this.setTotalAmount(apiTransaction.getTotalAmount());
+		this.setTransactionType(apiTransaction.getTransactionType());
+		this.setReferenceId(apiTransaction.getReferenceId());
 		
-		apiTransaction.setId(this.getId());
-		apiTransaction.setPassword(StringUtils.EMPTY); //Only send the password over the network when modifying the database.
+		apiTransaction.setRecordId(this.getId());
 		apiTransaction.setCreatedOn(this.getCreatedOn());
 		
 		return apiTransaction;
 	}
 	
-	public static String hashPassword(String password) {
-		String hashedPassword;
-
-		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-			messageDigest.update(password.getBytes());
-			hashedPassword = new String(messageDigest.digest());
-		} catch (NoSuchAlgorithmException e) {
-			hashedPassword = StringUtils.EMPTY;
-		}
-		
-		return hashedPassword;
-	}
-	
 	public TransactionEntity() {
 		super(DatabaseTable.TRANSACTION);
 		
-		this.active = false;
-		this.password = StringUtils.EMPTY;
+		this.cashierId = StringUtils.EMPTY;
+		this.totalAmount = 0.00;
+		this.transactionType = 0;
+		this.referenceId = new UUID(0, 0);
 	}
 
 	public TransactionEntity(Transaction apiTransaction) {
 		super(DatabaseTable.TRANSACTION);
 		
-		this.active = apiTransaction.getActive();
-		this.password = TransactionEntity.hashPassword(
-			apiTransaction.getPassword());
+		this.cashierId = apiTransaction.getCashierId();
+		this.totalAmount = apiTransaction.getTotalAmount();
+		this.transactionType = apiTransaction.getTransactionType();
+		this.referenceId = apiTransaction.getReferenceId();
 	}
 }
