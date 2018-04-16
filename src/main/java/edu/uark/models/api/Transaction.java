@@ -42,15 +42,6 @@ public class Transaction {
         return this;
     }
 
-    private int transactionType;
-    public int getTransactionType() {
-        return this.transactionType;
-    }
-    public Transaction setTransactionType(int transactiontype) {
-        this.transactionType = transactiontype;
-        return this;
-    }
-
     private UUID referenceId;
     public UUID getReferenceId() {
         return this.referenceId;
@@ -74,7 +65,6 @@ public class Transaction {
         this.cashierId = StringUtils.EMPTY;
         this.totalAmount = 0.00;
         this.isRefund = false;
-        this.transactionType = 0;
         this.referenceId = new UUID(0, 0);
         this.createdOn = LocalDateTime.now();
     }
@@ -84,7 +74,6 @@ public class Transaction {
         this.cashierId = transactionEntity.getCashierId();
         this.totalAmount = transactionEntity.getTotalAmount();
         this.isRefund = transactionEntity.getIsRefund();
-        this.transactionType = transactionEntity.getTransactionType();
         this.referenceId = transactionEntity.getReferenceId();
         this.createdOn = transactionEntity.getCreatedOn();
 
