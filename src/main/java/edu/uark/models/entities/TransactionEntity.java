@@ -22,7 +22,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		this.cashierId = rs.getString(TransactionFieldNames.CASHIER_ID);
 		this.totalAmount = rs.getDouble(TransactionFieldNames.TOTAL_AMOUNT);
 		this.isRefund = rs.getBoolean(TransactionFieldNames.IS_REFUND);
-		this.transactionType = rs.getInt(TransactionFieldNames.IS_REFUND);
 		this.referenceId = (UUID) rs.getObject(TransactionFieldNames.REFERENCE_ID);
 	}
 
@@ -31,7 +30,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		record.put(TransactionFieldNames.CASHIER_ID, this.cashierId);
 		record.put(TransactionFieldNames.TOTAL_AMOUNT, this.totalAmount);
 		record.put(TransactionFieldNames.IS_REFUND, this.isRefund);
-		record.put(TransactionFieldNames.TRANSACTION_TYPE, this.transactionType);
 		record.put(TransactionFieldNames.REFERENCE_ID, this.referenceId);
 
 		return record;
@@ -73,15 +71,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		return this;
 	}
 
-	private int transactionType;
-	public int getTransactionType() { return this.transactionType; }
-	public TransactionEntity setTransactionType(int transactionType) {
-		if(this.transactionType != transactionType) {
-			this.transactionType = transactionType;
-			this.propertyChanged(TransactionFieldNames.TRANSACTION_TYPE);
-		}
-		return this;
-	}
 
 	private UUID referenceId;
 	public UUID getReferenceId() {return this.referenceId; }
@@ -97,7 +86,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		this.setCashierId(apiTransaction.getCashierId());
 		this.setTotalAmount(apiTransaction.getTotalAmount());
 		this.setIsRefund(apiTransaction.getIsRefund());
-		this.setTransactionType(apiTransaction.getTransactionType());
 		this.setReferenceId(apiTransaction.getReferenceId());
 
 		apiTransaction.setRecordId(this.getId());
@@ -112,7 +100,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 
 		this.cashierId = StringUtils.EMPTY;
 		this.totalAmount = 0.00;
-		this.transactionType = 0;
 		this.referenceId = new UUID(0, 0);
 	}
 
@@ -121,7 +108,6 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		
 		this.cashierId = apiTransaction.getCashierId();
 		this.totalAmount = apiTransaction.getTotalAmount();
-		this.transactionType = apiTransaction.getTransactionType();
 		this.referenceId = apiTransaction.getReferenceId();
 	}
 }
