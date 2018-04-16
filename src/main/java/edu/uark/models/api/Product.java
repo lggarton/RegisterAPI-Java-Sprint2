@@ -24,12 +24,12 @@ public class Product {
 		return this;
 	}
 	
-	private int count;
-	public int getCount() {
-		return this.count;
+	private int quantity;
+	public int getQuantity() {
+		return this.quantity;
 	}
-	public Product setCount(int count) {
-		this.count = count;
+	public Product setCount(int quantity) {
+		this.quantity = quantity;
 		return this;
 	}
 	
@@ -53,7 +53,7 @@ public class Product {
 	}
 	
 	public Product() {
-		this.count = -1;
+		this.quantity = -1;
 		this.lookupCode = "";
 		this.id = new UUID(0, 0);
 		this.createdOn = LocalDateTime.now();
@@ -63,7 +63,7 @@ public class Product {
 	
 	public Product(ProductEntity productEntity) {
 		this.id = productEntity.getId();
-		this.count = productEntity.getCount();
+		this.quantity = productEntity.getQuantity();
 		this.createdOn = productEntity.getCreatedOn();
 		this.lookupCode = productEntity.getLookupCode();
 		this.price = productEntity.getPrice();

@@ -39,9 +39,9 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		return this;
 	}
 
-	private int count;
-	public int getCount() {
-		return this.count;
+	private int quantity;
+	public int getQuantity() {
+		return this.quantity;
 	}
 	
 	private double price;
@@ -54,10 +54,28 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		return this.status;
 	}
 	
-	public ProductEntity setCount(int count) {
-		if (this.count != count) {
-			this.count = count;
-			this.propertyChanged(ProductFieldNames.COUNT);
+	public ProductEntity setQuantity(int quantity) {
+		if (this.quantity != quantity) {
+			this.quantity = quantity;
+			this.propertyChanged(ProductFieldNames.QUANTITY);
+		}
+		
+		return this;
+	}
+	
+	public ProductEntity setPrice(double price) {
+		if (this.price != price) {
+			this.price = price;
+			this.propertyChanged(ProductFieldNames.PRICE);
+		}
+		
+		return this;
+	}
+	
+	public ProductEntity setStatus(String status) {
+		if (this.status != status) {
+			this.status = status;
+			this.propertyChanged(ProductFieldNames.STATUS);
 		}
 		
 		return this;
