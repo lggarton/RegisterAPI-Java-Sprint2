@@ -31,10 +31,10 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	}
 	
 	private EmployeeRepositoryInterface employeeRepository;
-	public EmployeeRepositoryInterface getProductRepository() {
+	public EmployeeRepositoryInterface getEmployeeRepository() {
 		return this.employeeRepository;
 	}
-	public EmployeeQuery setProductRepository(EmployeeRepositoryInterface employeeRepository) {
+	public EmployeeQuery setEmployeeRepository(EmployeeRepositoryInterface employeeRepository) {
 		this.employeeRepository = employeeRepository;
 		return this;
 	}

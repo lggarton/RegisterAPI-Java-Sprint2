@@ -21,7 +21,7 @@ import edu.uark.models.api.Transaction;
 public class TransactionRestController {
 
     //transaction exist check
-    @RequestMapping(value = "/{reference_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{referenceid}", method = RequestMethod.GET)
     public Transaction getTransaction(@PathVariable UUID referenceid) {
         return (new TransactionQuery()).
                 setRecordId(referenceid).
