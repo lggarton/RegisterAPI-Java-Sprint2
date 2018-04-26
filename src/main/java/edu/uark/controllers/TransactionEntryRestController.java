@@ -26,6 +26,6 @@ public class TransactionEntryRestController {
     @ResponseBody
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
-        return "Sucessful test. (TransactionEntryRestController)";
+        return "Successful test. (TransactionEntryRestController)";
     }
 }

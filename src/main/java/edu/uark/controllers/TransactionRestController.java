@@ -48,6 +48,6 @@ public class TransactionRestController {
     @ResponseBody
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
-        return "Sucessful test. (TransactionRestController)";
+        return "Successful test. (TransactionRestController)";
     }
 }
