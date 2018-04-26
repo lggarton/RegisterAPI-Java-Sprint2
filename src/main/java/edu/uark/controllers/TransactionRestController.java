@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.commands.transaction.TransactionQuery;
 import edu.uark.commands.transaction.TransactionCreateCommand;
+import edu.uark.commands.transaction.TransactionUpdateCommand;
 import edu.uark.models.api.Transaction;
 
 @RestController
@@ -33,5 +34,20 @@ public class TransactionRestController {
         return(new TransactionCreateCommand()).
             setApiTransaction(transaction).
                     execute();
+    }
+
+    //update transaction
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.PUT)
+    public Transaction updateTransaction(@PathVariable UUID transactionId, @RequestBody Transaction transaction) {
+        return(new TransactionUpdateCommand()).
+                setTransactionId(transactionId).
+                setApiTransaction(transaction).
+                execute();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        return "Sucessful test. (TransactionRestController)";
     }
 }

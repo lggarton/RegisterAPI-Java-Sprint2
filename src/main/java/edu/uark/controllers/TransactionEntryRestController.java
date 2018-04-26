@@ -22,4 +22,10 @@ public class TransactionEntryRestController {
                 setApiTransactionEntry(transactionEntry).
                 execute();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        return "Sucessful test. (TransactionEntryRestController)";
+    }
 }
