@@ -6,7 +6,7 @@ import edu.uark.commands.ResultCommandInterface;
 import edu.uark.models.api.Transaction;
 import edu.uark.models.repositories.TransactionRepository;
 import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface;
-public class TransactionsQuery {
+public class TransactionsQuery implements ResultCommandInterface<List<Transaction>> {
     @Override
     public List <Transaction> execute() {
         return this.transactionRepository.
