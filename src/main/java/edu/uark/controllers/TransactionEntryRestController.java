@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.commands.transactionEntry.TransactionEntryCreateCommand;
+import edu.uark.commands.transactionEntry.TransactionEntryQuery;
 import edu.uark.models.api.TransactionEntry;
 @RestController
 @RequestMapping(value = "/api/transactionentry")
@@ -23,6 +24,12 @@ public class TransactionEntryRestController {
                 execute();
     }
 
+    @RequestMapping(value = "/{recordId}", method = RequestMethod.GET)
+    public TransactionEntry getTransactionEntry(@PathVariable UUID referenceid) {
+        return (new TransactionEntryQuery()).
+                setRecordId(referenceid).
+                execute();
+    }
     @ResponseBody
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
