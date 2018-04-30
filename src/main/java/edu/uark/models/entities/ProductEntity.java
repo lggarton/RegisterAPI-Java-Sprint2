@@ -94,14 +94,16 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	
 	public ProductEntity() {
 		super(DatabaseTable.PRODUCT);
-		
+
+		this.price = 0.00;
 		this.quantity = -1;
 		this.lookupCode = StringUtils.EMPTY;
 	}
 	
 	public ProductEntity(Product apiProduct) {
 		super(DatabaseTable.PRODUCT);
-		
+
+		this.price = apiProduct.getPrice();
 		this.quantity = apiProduct.getQuantity();
 		this.lookupCode = apiProduct.getLookupCode();
 	}
