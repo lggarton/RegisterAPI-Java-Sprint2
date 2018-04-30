@@ -1,5 +1,7 @@
 package edu.uark.models.api;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -37,7 +39,12 @@ public class Product {
 	public double getPrice() {
 		return this.price;
 	}
-		
+
+	public Product setPrice(double price) {
+		this.price = price;
+		return this;
+	}
+
 	private String status;
 	public String getStatus() {
 		return this.status;
