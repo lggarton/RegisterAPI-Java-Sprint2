@@ -24,7 +24,7 @@ public class TransactionRestController {
 
     //transactions query
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Transaction> getProducts() {
+    public List<Transaction> getTransactions() {
         return (new TransactionsQuery()).execute();
     }
 
