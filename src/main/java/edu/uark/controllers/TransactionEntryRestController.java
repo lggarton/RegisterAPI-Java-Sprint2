@@ -25,9 +25,9 @@ public class TransactionEntryRestController {
     }
 
     @RequestMapping(value = "/{recordId}", method = RequestMethod.GET)
-    public TransactionEntry getTransactionEntry(@PathVariable UUID referenceid) {
+    public TransactionEntry getTransactionEntry(@PathVariable UUID recordId) {
         return (new TransactionEntryQuery()).
-                setRecordId(referenceid).
+                setRecordId(recordId).
                 execute();
     }
     @ResponseBody
