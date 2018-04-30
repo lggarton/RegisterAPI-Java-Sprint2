@@ -38,9 +38,19 @@ public class Product {
 		return this.price;
 	}
 		
+	public Product setPrice(double price) {
+		this.price = price;
+		return this;
+	}
+	
 	private String status;
 	public String getStatus() {
 		return this.status;
+	}
+	
+	public Public setStatus(String status) {
+		this.status = status;
+		return this;
 	}
 	
 	private LocalDateTime createdOn;
