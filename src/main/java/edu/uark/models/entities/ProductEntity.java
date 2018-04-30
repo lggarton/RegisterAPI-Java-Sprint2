@@ -84,6 +84,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public Product synchronize(Product apiProduct) {
 		this.setQuantity(apiProduct.getQuantity());
 		this.setLookupCode(apiProduct.getLookupCode());
+		this.setPrice(apiProduct.getPrice());
 		
 		apiProduct.setId(this.getId());
 		apiProduct.setCreatedOn(this.getCreatedOn());
