@@ -1,5 +1,6 @@
 package edu.uark.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -13,12 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.uark.commands.transaction.TransactionQuery;
 import edu.uark.commands.transaction.TransactionCreateCommand;
 import edu.uark.commands.transaction.TransactionUpdateCommand;
+import edu.uark.commands.transaction.TransactionsQuery;
 import edu.uark.models.api.Transaction;
 
 @RestController
 @RequestMapping(value = "/api/transaction")
 
 public class TransactionRestController {
+
+    //transactions query
+    @RequestMappig(value = "/", method = RequestMethod.GET)
+    public List<Transaction> getProducts() {
+        return (new TransactionsQuery()).execute();
+    }
 
     //transaction exist check
     @RequestMapping(value = "/{referenceid}", method = RequestMethod.GET)
@@ -29,7 +37,7 @@ public class TransactionRestController {
     }
 
     //create transaction
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Transaction TransactionCreateCommand(@RequestBody Transaction transaction) {
         return(new TransactionCreateCommand()).
             setApiTransaction(transaction).
