@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import edu.uark.models.entities.ProductEntity;
 
 public class Product {
@@ -44,10 +46,14 @@ public class Product {
 		this.price = price;
 		return this;
 	}
-
 	private String status;
 	public String getStatus() {
 		return this.status;
+	}
+	
+	public Product setStatus(String status) {
+		this.status = status;
+		return this;
 	}
 	
 	private LocalDateTime createdOn;
