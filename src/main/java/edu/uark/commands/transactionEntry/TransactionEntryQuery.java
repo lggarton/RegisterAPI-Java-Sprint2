@@ -34,7 +34,7 @@ public class TransactionEntryQuery implements ResultCommandInterface<Transaction
     private TransactionEntryRepositoryInterface transactionEntryRepository;
 
     public TransactionEntryRepositoryInterface getTransactionRepository() {
-        return this.transactionRepository;
+        return this.transactionEntryRepository;
     }
     public TransactionEntryQuery setTransactionEntryRepository(TransactionEntryRepositoryInterface transactionEntryRepository) {
         this.transactionEntryRepository = transactionEntryRepository;
