@@ -3,6 +3,8 @@ package edu.uark.models.api;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import edu.uark.models.entities.ProductEntity;
 
 public class Product {
