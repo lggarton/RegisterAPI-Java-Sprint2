@@ -16,13 +16,15 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.lookupCode = rs.getString(ProductFieldNames.LOOKUP_CODE);
 		this.quantity = rs.getInt(ProductFieldNames.QUANTITY);
+		this.price = rs.getDouble(ProductFieldNames.PRICE);
+
 	}
 
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(ProductFieldNames.LOOKUP_CODE, this.lookupCode);
 		record.put(ProductFieldNames.QUANTITY, this.quantity);
-		
+		record.put(ProductFieldNames.PRICE, this.price);
 		return record;
 	}
 
