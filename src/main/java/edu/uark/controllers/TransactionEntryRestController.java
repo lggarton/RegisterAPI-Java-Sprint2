@@ -28,7 +28,8 @@ public class TransactionEntryRestController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<TransactionEntry> getTransactionEntries() {
-        return (new TransactionEntriesQuery()).execute();
+        return (new TransactionEntriesQuery()).
+                execute();
     }
 
     @RequestMapping(value = "/{recordId}", method = RequestMethod.GET)
