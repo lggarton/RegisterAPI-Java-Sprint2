@@ -32,7 +32,3 @@ public class TransactionEntriesQuery implements ResultCommandInterface<List<Tran
         this.transactionEntryRepository = new TransactionEntryRepository();
     }
 }
-
-
-
-}
